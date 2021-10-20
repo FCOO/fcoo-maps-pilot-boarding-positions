@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="da" style="font-size: 100%">
+<head>
+    <title>fcoo.dk - fcoo-maps-pilot-boarding-positions - Demo</title>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='x-dns-prefetch-control' content='on'>
+
+    <meta name='copyright' content='FCOO'>
+    <meta name='owner' content='FCOO'>
+
+  <link  href="bower_components.css" rel="stylesheet">    
+  <link  href="../src/fcoo-maps-pilot-boarding-positions.css" rel="stylesheet">    
+</head>
+
+<body>
+    <script>
+        window.fcoo = window.fcoo || {};
+        window.fcoo.DEMO_VERSION = true;
+        //OR window.fcoo.LOCAL_DATA = true;
+    </script>
+
+    <script src="bower_components.js"></script>
+    <script src="../src/fcoo-maps-pilot-boarding-positions.js"></script>
+
+    <script>
+        window.fcoo.map.createApplication(
+            //options
+            {
+                applicationName: {da:'DA: fcoo-maps-pilot-boarding-positions', en:'EN: fcoo-maps-pilot-boarding-positions'},
+                leftMenu       : {isLayerMenu: true, width: 350},
+            },
+
+            //layerMenu
+            ["NAVIGATION_PILOT_BOARDING_POSITIONS"]
+        );
+
+        
+
+
+
+
+
+
+    </script>
+</body>
+</html>
