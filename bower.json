@@ -6,10 +6,7 @@
     "Niels Holt"
   ],
   "description": "",
-  "main": [
-    "dist/fcoo-maps-pilot-boarding-positions.js",
-    "dist/fcoo-maps-pilot-boarding-positions.css"
-  ],
+  "main": "dist/fcoo-maps-pilot-boarding-positions.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/FCOO/fcoo-maps-pilot-boarding-positions.git"
@@ -17,11 +14,7 @@
   "dependencies": {
     "fcoo-maps": "fcoo/fcoo-maps#latest"
   },
-  "devDependencies": {
-    "bourbon": "latest",
-    "modernizr-mixin": "latest",
-    "mathsass": "latest"
-  },
+  "devDependencies": {},
   "license": "MIT",
   "ignore": [
     "**/.*",
