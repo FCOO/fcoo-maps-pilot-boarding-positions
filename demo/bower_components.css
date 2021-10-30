@@ -659,7 +659,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 ************************************************/
 /***********************************************
-    modernizr-mediaquery.scss, 
+    modernizr-mediaquery.scss,
 
     (c) 2015, FCOO
 
@@ -668,7 +668,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 ************************************************/
 /***********************************************
-    modernizr-mediaquery-variables.scss, 
+    modernizr-mediaquery-variables.scss,
 
     (c) 2015, FCOO
 
@@ -679,7 +679,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 ************************************************/
 /***********************************************
-    _modernizr-mediaquery-orientation_print.scss, 
+    _modernizr-mediaquery-orientation_print.scss,
 
     (c) 2015, FCOO
 
@@ -26141,7 +26141,7 @@ Adjust font-size and top for .inner to fit inside a fa-map-marker icon
   top: calc(-4.1em / 0.5 * 1.2); }
 
 /***********************************************
-	leaflet-control-topcenter.scss, 
+	leaflet-control-topcenter.scss,
 
 	(c) 2016, FCOO
 
@@ -26169,7 +26169,7 @@ Adjust font-size and top for .inner to fit inside a fa-map-marker icon
   right: 0; }
 
 /*! =======================================================
-                      VERSION  11.0.2              
+                      VERSION  11.0.2
 ========================================================= */
 /*! =========================================================
  * bootstrap-slider.js
@@ -26186,7 +26186,7 @@ Adjust font-size and top for .inner to fit inside a fa-map-marker icon
  *
  * bootstrap-slider is released under the MIT License
  * Copyright (c) 2019 Kyle Kemp, Rohit Kalkur, and contributors
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without
@@ -26195,10 +26195,10 @@ Adjust font-size and top for .inner to fit inside a fa-map-marker icon
  * copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following
  * conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -27207,7 +27207,7 @@ leaflet-bootstrap-control-position.scss
     visibility: hidden !important; }
 
 /***********************************************
-	leaflet-marker-vessel.scss, 
+	leaflet-marker-vessel.scss,
 
 	(c) 2018, FCOO
 
@@ -27270,7 +27270,10 @@ leaflet-map-sync-cursor
   font-size: 18px;
   color: black;
   text-align: center;
-  text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
+  text-shadow: -1px -1px 0 red,
+ 1px -1px 0 red,
+ -1px 1px 0 red,
+ 1px 1px 0 red;
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -28354,7 +28357,7 @@ MARGIN-BOTTOM FOR ELEMENTS IN MODAL
 All elements in modal-windows get same margin-bottom
 ************************************************************/
 /***********************************************
-    _leaflet-zoom-modernizr.scss, 
+    _leaflet-zoom-modernizr.scss,
 
     (c) 2016, FCOO
 
@@ -28455,11 +28458,11 @@ DIVERSE
 .icon-active {
   color: #007bff; }
 
-.fa-pilot-boarding-position-diamond {
-  position: relative;
-  bottom: 1px; }
-  .fa-pilot-boarding-position-diamond:before {
-    font-size: calc(9em / 12); }
+//HER.fa-pilot-boarding-position-diamond {
+//HER  position: relative;
+//HER  bottom: 1px; }
+//HER  .fa-pilot-boarding-position-diamond:before {
+//HER    font-size: calc(9em / 12); }
 
 /****************************************************************************
 L.CONTROL.LOCATE

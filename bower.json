@@ -1,29 +1,30 @@
 {
-  "name": "fcoo-maps-pilot-boarding-positions",
-  "version": "1.0.1",
-  "homepage": "https://github.com/FCOO/fcoo-maps-pilot-boarding-positions",
-  "authors": [
-    "Niels Holt"
-  ],
-  "description": "",
-  "main": "dist/fcoo-maps-pilot-boarding-positions.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/FCOO/fcoo-maps-pilot-boarding-positions.git"
-  },
-  "dependencies": {
-    "fcoo-maps": "fcoo/fcoo-maps#latest"
-  },
-  "devDependencies": {},
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "moduleType": [
-    "es6"
-  ]
+    "name": "fcoo-maps-pilot-boarding-positions",
+    "version": "1.0.1",
+    "homepage": "https://github.com/FCOO/fcoo-maps-pilot-boarding-positions",
+    "authors": [
+        "Niels Holt"
+    ],
+    "description": "",
+    "main": [
+        "dist/fcoo-maps-pilot-boarding-positions.js",
+        "dist/fcoo-maps-pilot-boarding-positions.css"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/FCOO/fcoo-maps-pilot-boarding-positions.git"
+    },
+    "dependencies": {
+        "fcoo-maps": "fcoo/fcoo-maps#latest"
+    },
+    "devDependencies": {},
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "moduleType": ["es6"]
 }
