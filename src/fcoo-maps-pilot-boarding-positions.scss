@@ -3,8 +3,8 @@ fcoo-maps-pilot-boarding-positions.scss,
 ************************************************/
 
 //Css for the red diamond inside the icon for layer with Pilot Boarding Positions
-.fa-pilot-boarding-position-diamond {
-    position: relative;
-    bottom  : 1px;
-    &:before { font-size: calc(9em / 12) }
+.fa-pilot-boarding-position-rhombus {
+    transform: scaleX(.6) scaleY(.8);
 }
+
+

@@ -1,12 +1,8 @@
 /***********************************************
 fcoo-maps-pilot-boarding-positions.scss,
 ************************************************/
-.fa-pilot-boarding-position-diamond {
-  position: relative;
-  bottom: 1px;
-}
-.fa-pilot-boarding-position-diamond:before {
-  font-size: calc(9em / 12);
+.fa-pilot-boarding-position-rhombus {
+  transform: scaleX(0.6) scaleY(0.8);
 }
 
 /*# sourceMappingURL=fcoo-maps-pilot-boarding-positions.css.map */

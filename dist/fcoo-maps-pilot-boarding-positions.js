@@ -19,24 +19,42 @@
 
 
         id = 'NAVIGATION_PILOT_BOARDING_POSITIONS',
-        bsMarkerOptions = {
+
+        colorName       = 'white',
+        borderColorName = 'danger',
+
+        pilotBoardingIcon = L.bsMarkerAsIcon(colorName, borderColorName);
+        pilotBoardingIcon.push('fas fa-rhombus fa-lbm-color-'+borderColorName+' fa-pilot-boarding-position-rhombus');
+        pilotBoardingIcon = [pilotBoardingIcon];
+
+
+    var bsMarkerOptions = {
             size           : 'small',
-            colorName      : 'white',
-            borderColorName: 'danger',
-            innerIconClass : 'fas fa-diamond text-danger',
-            scaleInner     : 180,
-            round          : true,
+            colorName      : colorName,
+            borderColorName: borderColorName,
             transparent    : true,
             hover          : true,
-
+            thinBorder     : true,
             pane           : nsMap.getMarkerPaneName(id),
             shadowPane     : nsMap.getShadowPaneName(id),
 
-            tooltipHideWhenPopupOpen: true
+            tooltipHideWhenPopupOpen: true,
+
+            svg: function(draw, dim, color, borderColor){
+                draw.attr({'shape-rendering': "crispEdges"});
+
+                var dim2 = Math.floor(dim / 2);
+                draw.polygon([
+                    dim2    , 0,
+                    dim2 + 3, dim2,
+                    dim2    , dim,
+                    dim2 - 3, dim2
+                ])
+                .fill(borderColor);
+            }
         },
 
         footer = {icon: 'fa-copyright', text: 'name:dpa', link: 'link:dpa'};
-
 
     //createMapLayer = {MAPLAYER_ID: CREATE_MAPLAYER_AND_MENU_FUNCTION} See fcoo-maps/src/map-layer_00.js for description
     nsMap.createMapLayer = nsMap.createMapLayer || {};
@@ -103,12 +121,9 @@
     MapLayer_PilotBoardingPositions = Extended MapLayer with pilot points
     *****************************************************************************/
     function MapLayer_PilotBoardingPositions(options) {
-        var icon = $.bsMarkerAsIcon('text-white', 'text-danger')[0];
-        icon.push('fas fa-diamond text-danger fa-pilot-boarding-position-diamond');
-
         nsMap.MapLayer.call(this,
             $.extend({
-                icon: [icon],
+                icon: pilotBoardingIcon,
                 text: {da:'Lodsmødesteder', en:'Pilot Boarding Positions'},
                 createMarkerPane: true,
                 minZoom: 6,
@@ -253,21 +268,17 @@
         createMarker: function(){
 
             this.marker =
-                L.bsMarkerCircle( this.latLng, bsMarkerOptions)
+                L.bsMarkerSimpleRound( this.latLng, bsMarkerOptions)
                     .bindTooltip(this.options.name);
             return this.marker;
         },
 
         addPopup: function(marker){
-            //Create header-icon to look like the marker
-            var headerIcon = L.bsMarkerAsIcon(bsMarkerOptions);
-            headerIcon.push('fas fa-diamond fa-inside-circle text-danger');
-
             marker.bindPopup({
                 width  : 180,
                 fixable: true,
                 header : {
-                    icon: [headerIcon],
+                    icon: pilotBoardingIcon,
                     text: this.options.name
                 },
                 color: 'center',
