@@ -40,17 +40,17 @@
 
             tooltipHideWhenPopupOpen: true,
 
-            svg: function(draw, dim, color, borderColor){
-                draw.attr({'shape-rendering': "crispEdges"});
+            svg: function(svgOptions){
+                svgOptions.draw.attr({'shape-rendering': "crispEdges"});
 
-                var dim2 = Math.floor(dim / 2);
-                draw.polygon([
+                var dim2 = Math.floor(svgOptions.width / 2);
+                svgOptions.draw.polygon([
                     dim2    , 0,
                     dim2 + 3, dim2,
-                    dim2    , dim,
+                    dim2    , svgOptions.height,
                     dim2 - 3, dim2
                 ])
-                .fill(borderColor);
+                .fill(svgOptions.borderColor);
             }
         },
 
