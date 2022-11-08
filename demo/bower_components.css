@@ -724,8 +724,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-control-attribution a:focus {
 	text-decoration: underline;
 	}
-.leaflet-control-attribution svg {
+.leaflet-attribution-flag {
 	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
 	}
 .leaflet-left .leaflet-control-scale {
 	margin-left: 5px;
@@ -838,8 +841,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-popup-scrolled {
 	overflow: auto;
-	border-bottom: 1px solid #ddd;
-	border-top: 1px solid #ddd;
 	}
 
 .leaflet-oldie .leaflet-popup-content-wrapper {
@@ -953,9 +954,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	/* Prevent printers from removing background-images of controls. */
 	.leaflet-control {
 		-webkit-print-color-adjust: exact;
-		color-adjust: exact;
+		print-color-adjust: exact;
 		}
 	}
+
+/***********************************************
+	canvas-utilities.scss,
+
+	(c) 2022, FCOO
+
+	https://github.com/FCOO/canvas-utilities
+	https://github.com/FCOO
+
+
+************************************************/
+path:focus {
+  outline: none; }
 
 @charset "UTF-8";
 /***********************************************
@@ -15141,32 +15155,32 @@ COMMON STYLE
     position: relative;
     display: block;
     width: 100%;
-    height: 0.25rem;
-    left: -0.0625rem;
+    height: 4px;
+    left: -1px;
     overflow: hidden;
     outline: none !important;
     box-sizing: content-box;
     background-color: transparent;
-    border: 0.0625rem solid #afb3bb;
-    border-bottom-left-radius: 0.125rem;
-    border-top-left-radius: 0.125rem;
-    border-bottom-right-radius: 0.125rem;
-    border-top-right-radius: 0.125rem; }
+    border: 1px solid #afb3bb;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px; }
     .base-slider-container .line .line-color {
       position: absolute;
       display: block;
       height: 100%; }
       .base-slider-container .line .line-color:first-child {
-        border-bottom-left-radius: 0.125rem;
-        border-top-left-radius: 0.125rem; }
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px; }
       .base-slider-container .line .line-color:last-child:not(:first-child) {
-        border-bottom-right-radius: 0.125rem;
-        border-top-right-radius: 0.125rem; }
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px; }
   .base-slider-container .handle {
     position: absolute;
     display: block;
     z-index: 10;
-    top: 1.270625rem;
+    top: 20.33px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: local;
@@ -15176,20 +15190,20 @@ COMMON STYLE
   .base-slider-container .handle.pin {
     position: absolute;
     z-index: 100;
-    height: 0.6428571429rem !important;
-    margin-top: -0.5142857143rem;
-    width: 1rem;
-    margin-left: -0.5rem;
-    font-size: 0.6428571429rem;
+    height: 10.2857142857px !important;
+    margin-top: -8.2285714286px;
+    width: 16px;
+    margin-left: -8px;
+    font-size: 10.2857142857px;
     text-align: center;
     background-image: none !important; }
   .base-slider-container .marker-outer {
     position: absolute;
-    top: 0rem;
+    top: 0px;
     z-index: 2;
     cursor: default;
     font-family: Arial, sans-serif;
-    font-size: 0.625rem; }
+    font-size: 10px; }
     .base-slider-container .marker-outer .marker {
       box-sizing: border-box;
       width: 100%;
@@ -15203,33 +15217,37 @@ COMMON STYLE
       left: 0;
       width: 0;
       height: 0;
-      margin-left: -0.1875rem;
+      margin-left: -3px;
       content: "";
       overflow: hidden;
-      border: 0.1875rem solid transparent;
+      border: 3px solid transparent;
       border-top-color: black; }
     .base-slider-container .marker-outer .marker-text {
       display: inline-block;
       cursor: inherit;
       box-sizing: border-box;
       line-height: 1.333;
-      padding: 0.0625rem 0.3125rem;
-      border: 0.0625rem solid transparent;
-      border-radius: 0.25rem;
+      padding: 1px 5px;
+      border: 1px solid transparent;
+      border-radius: 4px;
       white-space: nowrap;
       text-shadow: none; }
     .base-slider-container .marker-outer.min-max .marker-text {
       color: #555;
       background-color: #d1d6e0;
-      border: 0.0625rem solid #afb3bb;
-      border-radius: 0.25rem; }
+      border: 1px solid #afb3bb;
+      border-radius: 4px; }
     .base-slider-container .marker-outer.single-from-to .marker-text {
       color: #111; }
     .base-slider-container .marker-outer.single-from-to.frame .marker-text {
       background: white;
-      border: 0.0625rem solid black; }
-  html.mouse-hover .base-slider-container.active .marker-outer:hover.single-from-to.frame .marker-text, html.mouse-hover .base-slider-container.active .marker-outer:hover.min-max .marker-text, html.mouse-hover .base-slider-container.active .marker-outer.hover.single-from-to.frame .marker-text, html.mouse-hover .base-slider-container.active .marker-outer.hover.min-max .marker-text {
-    border-color: #007bff; }
+      border: 1px solid black; }
+
+.grid-canvas {
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+  cursor: default; }
 
 .grid {
   position: absolute;
@@ -15237,94 +15255,35 @@ COMMON STYLE
   left: 0;
   z-index: 2;
   width: 100%;
-  height: 1.5625rem;
+  height: 25px;
   cursor: default; }
-  .grid .grid-pol {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 0.0625rem;
-    height: 0.375rem;
-    background: #555555;
-    box-shadow: 1px 1px 1px 0px rgba(255, 255, 255, 0.75), -1px 1px 1px 0px rgba(255, 255, 255, 0.75); }
-    .grid .grid-pol.major {
-      height: 0.5625rem;
-      background: black; }
-  .grid .grid-label-outer {
-    position: absolute;
-    z-index: 2;
-    top: 0.5625rem;
-    height: 1rem; }
-    .grid .grid-label-outer .grid-label {
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      margin-left: -50%;
-      padding: 0; }
-      .grid .grid-label-outer .grid-label .grid-label-text {
-        cursor: inherit;
-        display: inline-block;
-        box-sizing: border-box;
-        line-height: 1;
-        height: 100%;
-        padding: 0.125rem;
-        border: 0.0625rem solid transparent;
-        border-radius: 0.25rem; }
-        .grid .grid-label-outer .grid-label .grid-label-text.frame {
-          border-color: #afb3bb; }
   .grid.label-between-ticks {
-    height: 0.625rem; }
-    .grid.label-between-ticks .grid-label-outer {
-      top: 0;
-      height: 0.625rem; }
-      .grid.label-between-ticks .grid-label-outer .grid-label .grid-label-text {
-        padding: 0;
-        border-radius: 0;
-        border: 0; }
-  .grid .grid-label {
-    background-color: transparent;
-    left: 0;
-    white-space: nowrap;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 0.625rem;
-    line-height: 1;
-    font-weight: bold;
-    color: #000; }
-    .grid .grid-label.minor {
-      font-weight: normal;
-      color: #555555; }
-    .grid .grid-label.italic {
-      font-style: italic; }
+    height: 10px; }
   .grid .grid-color {
     position: absolute;
     z-index: 1;
     top: 0;
-    height: 0.5625rem;
-    font-size: 1.125rem;
+    height: 9px;
+    font-size: 18px;
     text-align: center;
-    line-height: 0.5625rem;
+    line-height: 9px;
     overflow: hidden; }
     .grid .grid-color.gt-max {
       left: 100%;
       width: 0;
       height: 0;
       border: 0 solid transparent;
-      border-bottom-width: 0.28125rem;
-      border-top-width: 0.28125rem;
-      border-left: 0.5625rem solid black; }
+      border-bottom-width: 4.5px;
+      border-top-width: 4.5px;
+      border-left: 9px solid black; }
     .grid .grid-color.lt-min {
-      left: -0.5625rem;
+      left: -9px;
       width: 0;
       height: 0;
       border: 0 solid transparent;
-      border-top-width: 0.28125rem;
-      border-bottom-width: 0.28125rem;
-      border-right: 0.5625rem solid black; }
-
-html.mouse-hover .base-slider-container.active:not(.dragging) .grid-label.clickable:hover .grid-label-text {
-  border-color: #007bff; }
+      border-top-width: 4.5px;
+      border-bottom-width: 4.5px;
+      border-right: 9px solid black; }
 
 .disabled {
   opacity: 0.4; }
@@ -15355,32 +15314,32 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.horizontal .line-background {
-    height: 2.770625rem; }
+    height: 44.33px; }
   .base-slider-container.horizontal .line {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.horizontal .handle {
     box-sizing: border-box;
-    width: 1rem;
-    height: 1.5rem;
-    margin-left: -0.5rem;
+    width: 16px;
+    height: 24px;
+    margin-left: -8px;
     background-image: url("images/handle.horizontal.svg"); }
   html.mouse-hover .base-slider-container.horizontal.active .handle:hover, html.mouse-hover .base-slider-container.horizontal.active .handle.hover {
     background-image: url("images/handle.horizontal.hover.svg"); }
   .base-slider-container.horizontal .pin {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.horizontal .grid {
-    top: 2.770625rem; }
+    top: 44.33px; }
   .base-slider-container.horizontal.ticks-on-line .grid {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.horizontal.ticks-on-line.no-marker .grid {
-    top: 0.5625rem; }
+    top: 9px; }
   .base-slider-container.horizontal.no-marker .line,
   .base-slider-container.horizontal.no-marker .pin {
-    top: 0.5625rem !important; }
+    top: 9px !important; }
   .base-slider-container.horizontal.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.horizontal.no-marker .grid {
-    top: 1.5rem; }
+    top: 24px; }
   .base-slider-container.horizontal.no-marker.has-pin {
     margin-top: 0; }
 
@@ -15390,34 +15349,34 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.vertical .line-background {
-    height: 2.270625rem; }
+    height: 36.33px; }
   .base-slider-container.vertical .line {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.vertical .handle {
     box-sizing: border-box;
-    width: 1.5rem;
-    height: 1rem;
-    margin-left: -0.75rem;
+    width: 24px;
+    height: 16px;
+    margin-left: -12px;
     background-image: url("images/handle.vertical.svg"); }
   html.mouse-hover .base-slider-container.vertical.active .handle:hover, html.mouse-hover .base-slider-container.vertical.active .handle.hover {
     background-image: url("images/handle.vertical.hover.svg"); }
   .base-slider-container.vertical .pin {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.vertical .grid {
-    top: 2.270625rem; }
+    top: 36.33px; }
   .base-slider-container.vertical.ticks-on-line .grid {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.vertical.ticks-on-line.no-marker .grid {
-    top: 0.3125rem; }
+    top: 5px; }
   .base-slider-container.vertical.no-marker .line,
   .base-slider-container.vertical.no-marker .pin {
-    top: 0.3125rem !important; }
+    top: 5px !important; }
   .base-slider-container.vertical.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.vertical.no-marker .grid {
-    top: 1rem; }
+    top: 16px; }
   .base-slider-container.vertical.no-marker.has-pin {
-    margin-top: 0.2017857143rem; }
+    margin-top: 3.2285714286px; }
 
 .base-slider-container.down {
   /****************************************************
@@ -15425,32 +15384,32 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.down .line-background {
-    height: 2.770625rem; }
+    height: 44.33px; }
   .base-slider-container.down .line {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.down .handle {
     box-sizing: border-box;
-    width: 1rem;
-    height: 1.5rem;
-    margin-left: -0.5rem;
+    width: 16px;
+    height: 24px;
+    margin-left: -8px;
     background-image: url("images/handle.down.svg"); }
   html.mouse-hover .base-slider-container.down.active .handle:hover, html.mouse-hover .base-slider-container.down.active .handle.hover {
     background-image: url("images/handle.down.hover.svg"); }
   .base-slider-container.down .pin {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.down .grid {
-    top: 2.770625rem; }
+    top: 44.33px; }
   .base-slider-container.down.ticks-on-line .grid {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.down.ticks-on-line.no-marker .grid {
-    top: 0.5625rem; }
+    top: 9px; }
   .base-slider-container.down.no-marker .line,
   .base-slider-container.down.no-marker .pin {
-    top: 0.5625rem !important; }
+    top: 9px !important; }
   .base-slider-container.down.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.down.no-marker .grid {
-    top: 1.5rem; }
+    top: 24px; }
   .base-slider-container.down.no-marker.has-pin {
     margin-top: 0; }
 
@@ -15460,32 +15419,32 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.up .line-background {
-    height: 2.770625rem; }
+    height: 44.33px; }
   .base-slider-container.up .line {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.up .handle {
     box-sizing: border-box;
-    width: 1rem;
-    height: 1.5rem;
-    margin-left: -0.5rem;
+    width: 16px;
+    height: 24px;
+    margin-left: -8px;
     background-image: url("images/handle.up.svg"); }
   html.mouse-hover .base-slider-container.up.active .handle:hover, html.mouse-hover .base-slider-container.up.active .handle.hover {
     background-image: url("images/handle.up.hover.svg"); }
   .base-slider-container.up .pin {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.up .grid {
-    top: 2.770625rem; }
+    top: 44.33px; }
   .base-slider-container.up.ticks-on-line .grid {
-    top: 1.833125rem; }
+    top: 29.33px; }
   .base-slider-container.up.ticks-on-line.no-marker .grid {
-    top: 0.5625rem; }
+    top: 9px; }
   .base-slider-container.up.no-marker .line,
   .base-slider-container.up.no-marker .pin {
-    top: 0.5625rem !important; }
+    top: 9px !important; }
   .base-slider-container.up.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.up.no-marker .grid {
-    top: 1.5rem; }
+    top: 24px; }
   .base-slider-container.up.no-marker.has-pin {
     margin-top: 0; }
 
@@ -15495,34 +15454,34 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.right .line-background {
-    height: 2.270625rem; }
+    height: 36.33px; }
   .base-slider-container.right .line {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.right .handle {
     box-sizing: border-box;
-    width: 1.5rem;
-    height: 1rem;
-    margin-left: -0.75rem;
+    width: 24px;
+    height: 16px;
+    margin-left: -12px;
     background-image: url("images/handle.right.svg"); }
   html.mouse-hover .base-slider-container.right.active .handle:hover, html.mouse-hover .base-slider-container.right.active .handle.hover {
     background-image: url("images/handle.right.hover.svg"); }
   .base-slider-container.right .pin {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.right .grid {
-    top: 2.270625rem; }
+    top: 36.33px; }
   .base-slider-container.right.ticks-on-line .grid {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.right.ticks-on-line.no-marker .grid {
-    top: 0.3125rem; }
+    top: 5px; }
   .base-slider-container.right.no-marker .line,
   .base-slider-container.right.no-marker .pin {
-    top: 0.3125rem !important; }
+    top: 5px !important; }
   .base-slider-container.right.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.right.no-marker .grid {
-    top: 1rem; }
+    top: 16px; }
   .base-slider-container.right.no-marker.has-pin {
-    margin-top: 0.2017857143rem; }
+    margin-top: 3.2285714286px; }
 
 .base-slider-container.left {
   /****************************************************
@@ -15530,34 +15489,34 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.left .line-background {
-    height: 2.270625rem; }
+    height: 36.33px; }
   .base-slider-container.left .line {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.left .handle {
     box-sizing: border-box;
-    width: 1.5rem;
-    height: 1rem;
-    margin-left: -0.75rem;
+    width: 24px;
+    height: 16px;
+    margin-left: -12px;
     background-image: url("images/handle.left.svg"); }
   html.mouse-hover .base-slider-container.left.active .handle:hover, html.mouse-hover .base-slider-container.left.active .handle.hover {
     background-image: url("images/handle.left.hover.svg"); }
   .base-slider-container.left .pin {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.left .grid {
-    top: 2.270625rem; }
+    top: 36.33px; }
   .base-slider-container.left.ticks-on-line .grid {
-    top: 1.583125rem; }
+    top: 25.33px; }
   .base-slider-container.left.ticks-on-line.no-marker .grid {
-    top: 0.3125rem; }
+    top: 5px; }
   .base-slider-container.left.no-marker .line,
   .base-slider-container.left.no-marker .pin {
-    top: 0.3125rem !important; }
+    top: 5px !important; }
   .base-slider-container.left.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.left.no-marker .grid {
-    top: 1rem; }
+    top: 16px; }
   .base-slider-container.left.no-marker.has-pin {
-    margin-top: 0.2017857143rem; }
+    margin-top: 3.2285714286px; }
 
 .base-slider-container.round {
   /****************************************************
@@ -15565,34 +15524,34 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.round .line-background {
-    height: 2.520625rem; }
+    height: 40.33px; }
   .base-slider-container.round .line {
-    top: 1.708125rem; }
+    top: 27.33px; }
   .base-slider-container.round .handle {
     box-sizing: border-box;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-left: -0.625rem;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
     background-image: url("images/handle.round.svg"); }
   html.mouse-hover .base-slider-container.round.active .handle:hover, html.mouse-hover .base-slider-container.round.active .handle.hover {
     background-image: url("images/handle.round.hover.svg"); }
   .base-slider-container.round .pin {
-    top: 1.708125rem; }
+    top: 27.33px; }
   .base-slider-container.round .grid {
-    top: 2.520625rem; }
+    top: 40.33px; }
   .base-slider-container.round.ticks-on-line .grid {
-    top: 1.708125rem; }
+    top: 27.33px; }
   .base-slider-container.round.ticks-on-line.no-marker .grid {
-    top: 0.4375rem; }
+    top: 7px; }
   .base-slider-container.round.no-marker .line,
   .base-slider-container.round.no-marker .pin {
-    top: 0.4375rem !important; }
+    top: 7px !important; }
   .base-slider-container.round.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.round.no-marker .grid {
-    top: 1.25rem; }
+    top: 20px; }
   .base-slider-container.round.no-marker.has-pin {
-    margin-top: 0.0767857143rem; }
+    margin-top: 1.2285714286px; }
 
 .base-slider-container.fixed {
   /****************************************************
@@ -15600,32 +15559,32 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.fixed .line-background {
-    height: 2.520625rem; }
+    height: 40.33px; }
   .base-slider-container.fixed .line {
-    top: 1.395625rem; }
+    top: 22.33px; }
   .base-slider-container.fixed .handle {
     box-sizing: border-box;
-    width: 0.8333333333rem;
-    height: 1.25rem;
-    margin-left: -0.4166666667rem;
+    width: 13.3333333333px;
+    height: 20px;
+    margin-left: -6.6666666667px;
     background-image: url("images/handle.fixed.svg"); }
   .base-slider-container.fixed .pin {
-    top: 1.395625rem; }
+    top: 22.33px; }
   .base-slider-container.fixed .grid {
-    top: 1.770625rem; }
+    top: 28.33px; }
   .base-slider-container.fixed.ticks-on-line .grid {
-    top: 1.395625rem; }
+    top: 22.33px; }
   .base-slider-container.fixed.ticks-on-line.no-marker .grid {
-    top: 0.125rem; }
+    top: 2px; }
   .base-slider-container.fixed.no-marker .line,
   .base-slider-container.fixed.no-marker .pin {
-    top: 0.125rem !important; }
+    top: 2px !important; }
   .base-slider-container.fixed.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.fixed.no-marker .grid {
-    top: 1.25rem; }
+    top: 20px; }
   .base-slider-container.fixed.no-marker.has-pin {
-    margin-top: 0.3892857143rem; }
+    margin-top: 6.2285714286px; }
 
 .base-slider-container.range {
   /****************************************************
@@ -15633,40 +15592,40 @@ STYLE FOR SPECIFIC TYPE
         Adjust all top-position by adding top-margin if the pin is heigher than the handle
         ****************************************************/ }
   .base-slider-container.range .line-background {
-    height: 1.645625rem; }
+    height: 26.33px; }
   .base-slider-container.range .line {
-    top: 1.270625rem; }
+    top: 20.33px; }
   .base-slider-container.range .handle {
     box-sizing: border-box;
-    width: 0.375rem;
-    height: 0.375rem;
-    margin-left: -0.1875rem; }
+    width: 6px;
+    height: 6px;
+    margin-left: -3px; }
     .base-slider-container.range .handle.from {
       background-image: url("images/handle.range.from.svg"); }
     .base-slider-container.range .handle.to {
       background-image: url("images/handle.range.to.svg"); }
   .base-slider-container.range .pin {
-    top: 1.270625rem; }
+    top: 20.33px; }
   .base-slider-container.range .grid {
-    top: 1.645625rem; }
+    top: 26.33px; }
   .base-slider-container.range.ticks-on-line .grid {
-    top: 1.270625rem; }
+    top: 20.33px; }
   .base-slider-container.range.ticks-on-line.no-marker .grid {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.range.no-marker .line,
   .base-slider-container.range.no-marker .pin {
-    top: 0rem !important; }
+    top: 0px !important; }
   .base-slider-container.range.no-marker .handle {
-    top: 0rem; }
+    top: 0px; }
   .base-slider-container.range.no-marker .grid {
-    top: 0.375rem; }
+    top: 6px; }
   .base-slider-container.range.no-marker.has-pin {
-    margin-top: 0.5142857143rem; }
+    margin-top: 8.2285714286px; }
 
 .base-slider-container {
-  width: calc(100% - 1.5rem);
-  margin-left: 0.75rem;
-  margin-right: 0.75rem; }
+  width: calc(100% - 24px);
+  margin-left: 12px;
+  margin-right: 12px; }
 
 @charset "UTF-8";
 /***********************************************
@@ -15683,6 +15642,11 @@ STYLE FOR SPECIFIC TYPE
 jquery-scroll-container-variables.scss
 
 ************************************************/
+:root {
+  --jsc-scroll-size: 10px;
+  --jsc-scroll-padding: 10px;
+  --jsc-scroll-auto-padding: 10px; }
+
 /****************************************************
 Style for default scrollbar
 Not part of standard, but supported på Chrome and Safari
@@ -15700,16 +15664,16 @@ html.jq-scroll-default-css {
     scrollbar-width: thin;
     scrollbar-color: #cdcdcd white; }
   html.jq-scroll-default-css ::-webkit-scrollbar {
-    width: 8px; }
+    width: var(--jsc-scroll-size); }
   html.jq-scroll-default-css ::-webkit-scrollbar:horizontal {
-    height: 8px; }
+    height: var(--jsc-scroll-size); }
   html.jq-scroll-default-css ::-webkit-scrollbar-track {
     background-color: white;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 6px; }
+    border-radius: calc(var(--jsc-scroll-padding) - 2px); }
   html.jq-scroll-default-css ::-webkit-scrollbar-thumb {
     background-color: #cdcdcd;
-    border-radius: 6px;
+    border-radius: calc(var(--jsc-scroll-padding) - 2px);
     border: 1px solid white;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
     html.jq-scroll-default-css ::-webkit-scrollbar-thumb:hover {
@@ -15727,14 +15691,24 @@ html.jq-scroll-default-css {
 .jq-scroll-default.jq-scroll-container-horizontal {
   overflow-x: scroll;
   overflow-y: hidden; }
+  html.no-touchevents .jq-scroll-default.jq-scroll-container-horizontal {
+    padding-bottom: var(--jsc-scroll-auto-padding); }
 
 .jq-scroll-default.jq-scroll-container-vertical {
   overflow-y: scroll;
   overflow-x: hidden; }
+  html.no-touchevents .jq-scroll-default.jq-scroll-container-vertical {
+    padding-right: var(--jsc-scroll-auto-padding); }
 
 .jq-scroll-default.jq-scroll-container-both {
   overflow-y: scroll;
   overflow-x: scroll; }
+  html.no-touchevents .jq-scroll-default.jq-scroll-container-both {
+    padding-right: var(--jsc-scroll-auto-padding);
+    padding-bottom: var(--jsc-scroll-auto-padding); }
+
+html.no-touchevents .jq-scroll-default.jq-scroll-padding-left {
+  padding-left: var(--jsc-scroll-padding) !important; }
 
 /****************************************************************
 Add scroll-shadow - Not using mixin scroll-shadow-horizontal();
@@ -15957,6 +15931,11 @@ Adjust modal
 jquery-scroll-container-variables.scss
 
 ************************************************/
+:root {
+  --jsc-scroll-size: 10px;
+  --jsc-scroll-padding: 10px;
+  --jsc-scroll-auto-padding: 10px; }
+
 /************************************************************
 VARIABLES
 
@@ -18139,10 +18118,14 @@ textarea.form-control-lg {
   @media (prefers-reduced-motion: reduce) {
     .btn {
       transition: none; } }
-  :not(.btn-check) + .btn:hover, .btn:first-child:hover {
+  .btn:hover {
     color: var(--bs-btn-hover-color);
     background-color: var(--bs-btn-hover-bg);
     border-color: var(--bs-btn-hover-border-color); }
+  .btn-check + .btn:hover {
+    color: var(--bs-btn-color);
+    background-color: var(--bs-btn-bg);
+    border-color: var(--bs-btn-border-color); }
   .btn:focus-visible {
     color: var(--bs-btn-hover-color);
     background-color: var(--bs-btn-hover-bg);
@@ -18450,7 +18433,7 @@ textarea.form-control-lg {
   --bs-btn-font-size: 1.25rem;
   --bs-btn-border-radius: 0.5rem; }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .btn-bar-sm > .btn {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
   --bs-btn-font-size: 0.875rem;
@@ -18820,7 +18803,7 @@ textarea.form-control-lg {
   .dropstart .dropdown-toggle-split::before {
     margin-right: 0; }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-bar-sm > .btn + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
@@ -19974,6 +19957,7 @@ textarea.form-control-lg {
     display: none; }
 
 .toast-container {
+  --bs-toast-zindex: 1090;
   position: absolute;
   z-index: var(--bs-toast-zindex);
   width: max-content;
@@ -20003,7 +19987,7 @@ textarea.form-control-lg {
 .modal {
   --bs-modal-zindex: 1055;
   --bs-modal-width: 500px;
-  --bs-modal-padding: 0.375rem 0.375rem;
+  --bs-modal-padding: 0.375rem;
   --bs-modal-margin: 0.5rem;
   --bs-modal-color: ;
   --bs-modal-bg: #fff;
@@ -20018,7 +20002,7 @@ textarea.form-control-lg {
   --bs-modal-header-border-color: var(--bs-border-color);
   --bs-modal-header-border-width: 1px;
   --bs-modal-title-line-height: 1.5;
-  --bs-modal-footer-gap: 0.5rem;
+  --bs-modal-footer-gap: 0px;
   --bs-modal-footer-bg: ;
   --bs-modal-footer-border-color: var(--bs-border-color);
   --bs-modal-footer-border-width: 1px;
@@ -20345,8 +20329,8 @@ textarea.form-control-lg {
   --bs-popover-header-padding-x: 0.375rem;
   --bs-popover-header-padding-y: 0.375rem;
   --bs-popover-header-font-size: 1rem;
-  --bs-popover-header-color: ;
-  --bs-popover-header-bg: #e9ecef;
+  --bs-popover-header-color: var(jb-header-color);
+  --bs-popover-header-bg: var(--jb-header-bg);
   --bs-popover-body-padding-x: 0.375rem;
   --bs-popover-body-padding-y: 0.375rem;
   --bs-popover-body-color: #212529;
@@ -24007,7 +23991,7 @@ Contains global scss- and css-variable
 :root {
   --bs-modal-zindex: 1055;
   --bs-modal-width: 500px;
-  --bs-modal-padding: 0.375rem 0.375rem;
+  --bs-modal-padding: 0.375rem;
   --bs-modal-margin: 0.5rem;
   --bs-modal-color: ;
   --bs-modal-bg: #fff;
@@ -24022,7 +24006,7 @@ Contains global scss- and css-variable
   --bs-modal-header-border-color: var(--bs-border-color);
   --bs-modal-header-border-width: 1px;
   --bs-modal-title-line-height: 1.5;
-  --bs-modal-footer-gap: 0.5rem;
+  --bs-modal-footer-gap: 0px;
   --bs-modal-footer-bg: ;
   --bs-modal-footer-border-color: var(--bs-border-color);
   --bs-modal-footer-border-width: 1px;
@@ -24545,10 +24529,14 @@ Bootstrap allready have the following classes
 .text-capitalize
 
 // Weight and italics
-
-.font-weight-normal
-.font-weight-bold
-.font-italic
+.fw-bold        Bold text
+.fw-bolder      Bolder weight text (relative to the parent element)
+.fw-semibold    Semibold weight text
+.fw-normal      Normal weight text
+.fw-light       Light weight text
+.fw-lighter     Lighter weight text (relative to the parent element)
+.fst-italic     Italic text
+.fst-normal     Text with normal font style>
 
 */
 .opacity-0 {
@@ -24623,8 +24611,9 @@ BUTTON
 ************************************************************/
 /************************************************************
 Including size eXtra-Small .btn-xs and btn-group-xs as in Bootstrap 5
+Include btn-sizes when inside a btn-bar
 ************************************************************/
-.btn-xs, .btn-group-xs > .btn {
+.btn-xs, .btn-group-xs > .btn, .btn-bar-xs > .btn {
   --bs-btn-padding-y: 0.125rem;
   --bs-btn-padding-x: 0.25rem;
   --bs-btn-font-size: 0.75rem;
@@ -24725,7 +24714,7 @@ Also overwrite default bootstrap behaviour
   .btn-jb.no-shadow {
     box-shadow: none !important; }
   .btn-jb.min-width {
-    min-width: 5em; }
+    min-width: 5em !important; }
   .btn-jb > i.fa {
     min-width: 1em;
     text-align: left; }
@@ -24746,21 +24735,21 @@ Also overwrite default bootstrap behaviour
     width: var(--bs-btn-square-dimention); }
     .btn-jb.square:not(.big-square) {
       --bs-btn-square-dimention: 2.375rem; }
-      .btn-jb.square:not(.big-square).btn-sm, .btn-group-sm > .btn-jb.square.btn:not(.big-square) {
+      .btn-jb.square:not(.big-square).btn-sm, .btn-group-sm > .btn-jb.square.btn:not(.big-square), .btn-bar-sm > .btn-jb.square.btn:not(.big-square) {
         --bs-btn-square-dimention: 1.9375rem; }
-      .btn-jb.square:not(.big-square).btn-xs, .btn-group-xs > .btn-jb.square.btn:not(.big-square) {
+      .btn-jb.square:not(.big-square).btn-xs, .btn-group-xs > .btn-jb.square.btn:not(.big-square), .btn-bar-xs > .btn-jb.square.btn:not(.big-square) {
         --bs-btn-square-dimention: 1.5rem; }
     .btn-jb.square.big-square {
       --bs-btn-square-dimention: 3.25rem; }
-      .btn-jb.square.big-square.btn-sm, .btn-group-sm > .btn-jb.square.big-square.btn {
+      .btn-jb.square.big-square.btn-sm, .btn-group-sm > .btn-jb.square.big-square.btn, .btn-bar-sm > .btn-jb.square.big-square.btn {
         --bs-btn-square-dimention: 2.75rem; }
-      .btn-jb.square.big-square.btn-xs, .btn-group-xs > .btn-jb.square.big-square.btn {
+      .btn-jb.square.big-square.btn-xs, .btn-group-xs > .btn-jb.square.big-square.btn, .btn-bar-xs > .btn-jb.square.big-square.btn {
         --bs-btn-square-dimention: 2.1875rem; }
     .btn-jb.square.big-icon {
       --bs-btn-font-size: 1.625rem; }
-    .btn-jb.square.btn-sm.big-icon, .btn-group-sm > .btn-jb.square.big-icon.btn {
+    .btn-jb.square.btn-sm.big-icon, .btn-group-sm > .btn-jb.square.big-icon.btn, .btn-bar-sm > .btn-jb.square.big-icon.btn {
       --bs-btn-font-size: 1.375rem; }
-    .btn-jb.square.btn-xs.big-icon, .btn-group-xs > .btn-jb.square.big-icon.btn {
+    .btn-jb.square.btn-xs.big-icon, .btn-group-xs > .btn-jb.square.big-icon.btn, .btn-bar-xs > .btn-jb.square.big-icon.btn {
       --bs-btn-font-size: 1.1875rem; }
     .btn-jb.square > i.fa {
       width: 1.25em;
@@ -24793,6 +24782,9 @@ Modernizr-test for elements with class="hide-for-selected" or "show-for-selected
 /************************************************************
 BUTTON-GROUP
 ************************************************************/
+.btn-group-vertical.btn-group-no-round-border > .btn {
+  border-radius: 0; }
+
 .input-group .btn-group,
 .btn-group:not(.btn-group-vertical).btn-group-full-width {
   display: flex;
@@ -24818,32 +24810,54 @@ BUTTON-GROUP
 .btn-group-vertical .header-content-container {
   font-size: var(--bs-modal-content-font-size); }
 
-.btn-group-vertical .header-content-container {
-  width: 100%;
-  margin-bottom: 1px; }
+.btn-group .header-content, .btn-group-vertical .header-content {
+  color: var(--jb-inner-header-color);
+  background-color: var(--jb-inner-header-bg); }
+  .btn-group .header-content.header-main, .btn-group-vertical .header-content.header-main {
+    color: var(--jb-header-color);
+    background-color: var(--jb-header-bg); }
 
 .btn-group-vertical .btn.container-icon-and-text > i, .btn-group-vertical .btn.container-icon-and-text > .container-stacked-icons {
   width: 1.25em;
   text-align: center; }
 
-.btn-group-vertical .header-content-container + .btn,
-.btn-group-vertical .btn-group-vertical .btn {
+.btn-group-vertical .header-content-container + .btn:not(.after-space),
+.btn-group-vertical .btn-group-vertical .btn:not(.after-space) {
   border-top-left-radius: 0;
   border-top-right-radius: 0; }
 
-.btn-group-vertical + .btn-group-vertical {
-  margin-top: var(--bs-modal-header-padding-y); }
+/*
+To have a space between two button-groups
+the button-group before the space gets class="after-space"
+*/
+.btn-group.space-after {
+  margin-right: var(--bs-modal-header-padding-x); }
+
+.btn-group-vertical.space-after {
+  margin-bottom: var(--bs-modal-header-padding-y); }
+
+/*
+To have a space between two buttons in a (vertical) button-group
+the button before the space gets class="after-space"
+*/
+.btn-group-vertical .space-after {
+  margin-bottom: var(--bs-modal-header-padding-y);
+  border-bottom-left-radius: var(--bs-btn-border-radius) !important;
+  border-bottom-right-radius: var(--bs-btn-border-radius) !important; }
+  .btn-group-vertical .space-after + .btn {
+    border-top-left-radius: var(--bs-btn-border-radius) !important;
+    border-top-right-radius: var(--bs-btn-border-radius) !important; }
 
 .btn-group-vertical.btn-group-sm {
   --bs-modal-content-font-size: 0.875rem;
   --bs-modal-padding-x: 0.25rem;
   --bs-modal-padding-y: 0.25rem;
-  --bs-modal-padding: 0.25rem 0.25rem; }
+  --bs-modal-padding: 0.25rem; }
   .btn-group-vertical.btn-group-sm .header-content {
     --bs-modal-header-padding-x: 0.25rem;
     --bs-modal-header-padding-y: 0.25rem;
-    --bs-modal-header-padding: 0.25rem 0.25rem; }
-  .btn-group-vertical.btn-group-sm .footer-content {
+    --bs-modal-header-padding: 0.25rem; }
+  .btn-group-vertical.btn-group-sm .footer-content, .btn-group-vertical.btn-group-sm .jb-footer-content {
     --bs-footer-font-size: 0.75rem;
     --bs-footer-padding-y: 0.25rem;
     --bs-footer-padding-x: 0.25rem; }
@@ -24852,12 +24866,12 @@ BUTTON-GROUP
   --bs-modal-content-font-size: 0.75rem;
   --bs-modal-padding-x: 0.125rem;
   --bs-modal-padding-y: 0.125rem;
-  --bs-modal-padding: 0.125rem 0.125rem; }
+  --bs-modal-padding: 0.125rem; }
   .btn-group-vertical.btn-group-xs .header-content {
     --bs-modal-header-padding-x: 0.125rem;
     --bs-modal-header-padding-y: 0.125rem;
-    --bs-modal-header-padding: 0.125rem 0.125rem; }
-  .btn-group-vertical.btn-group-xs .footer-content {
+    --bs-modal-header-padding: 0.125rem; }
+  .btn-group-vertical.btn-group-xs .footer-content, .btn-group-vertical.btn-group-xs .jb-footer-content {
     --bs-footer-font-size: 0.6875rem;
     --bs-footer-padding-y: 0.125rem;
     --bs-footer-padding-x: 0.125rem; }
@@ -24872,6 +24886,30 @@ MENU (BUTTON-GROUP)
 
 .bs-menu-container hr.first.before, .bs-menu-container hr.last.after, .bs-menu-container hr + hr {
   display: none; }
+
+/************************************************************
+BUTTON-BAR
+************************************************************/
+.btn-bar .btn {
+  min-width: var(--bs-btn-square-dimention); }
+  .btn-bar .btn:not(:first-child) {
+    margin-left: 2px; }
+
+/************************************************************
+BUTTON-SELECT
+************************************************************/
+.btn-select {
+  display: flex;
+  align-items: center; }
+  .btn-select::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    margin-left: auto;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1em; }
 
 /************************************************************
 btn-shadow and btn-shadow-sm
@@ -24891,6 +24929,13 @@ classes to create "shadow-buttons" = invisible square buttons for correct spacin
 .btn-shadow-sm {
   width: 1.9375rem;
   height: 1.9375rem; }
+
+/************************************************************
+btn-round-border
+classes to create force round border despise placement
+************************************************************/
+.btn-round-border {
+  border-radius: var(--bs-btn-border-radius) !important; }
 
 /************************************************************
 HEADER-FOOTER
@@ -24914,6 +24959,7 @@ HEADER-CONTENT
   color: var(--jb-header-color);
   background-color: var(--jb-header-bg);
   cursor: default;
+  pointer-events: none;
   /****************************************************
     List of icons inside a header are placed inside a container
     <div class="header-icon-container>
@@ -24922,7 +24968,8 @@ HEADER-CONTENT
     </div>
     ****************************************************/ }
   .header-content.clickable {
-    cursor: pointer; }
+    cursor: pointer;
+    pointer-events: inherit; }
   .header-content.header-content-smaller {
     font-size: var(--bs-footer-font-size);
     padding: var(--bs-footer-padding-y) var(--bs-footer-padding-x); }
@@ -24940,6 +24987,7 @@ HEADER-CONTENT
   .header-content .header-icon-container {
     display: flex;
     align-items: baseline;
+    pointer-events: initial;
     flex-shrink: 0;
     justify-content: space-between;
     margin-left: auto;
@@ -24974,7 +25022,7 @@ div.modal-footer {
   color: var(--jb-footer-color);
   background-color: var(--jb-footer-bg); }
 
-.footer-content {
+.footer-content, .jb-footer-content {
   line-height: 1.25;
   font-size: var(--bs-footer-font-size);
   display: flex;
@@ -24986,10 +25034,27 @@ div.modal-footer {
   color: var(--jb-footer-color);
   background-color: var(--jb-footer-bg);
   border-top: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color); }
-  .footer-content.no-border {
+  .footer-content.no-border, .no-border.jb-footer-content {
     border-top: none; }
-  .footer-content:empty {
+  .footer-content:empty, .jb-footer-content:empty {
     display: none !important; }
+
+/************************
+STAND ALONE FOOTER-CONTENT
+Footer content outside modal
+************************/
+.jb-footer-content {
+  --bs-footer-font-size: 0.875rem;
+  --bs-footer-padding-y: 0.375rem;
+  --bs-footer-padding-x: 0.375rem; }
+  .jb-footer-content.jb-footer-content-sm {
+    --bs-footer-font-size: 0.75rem;
+    --bs-footer-padding-y: 0.25rem;
+    --bs-footer-padding-x: 0.25rem; }
+  .jb-footer-content.jb-footer-content-xs {
+    --bs-footer-font-size: 0.6875rem;
+    --bs-footer-padding-y: 0.125rem;
+    --bs-footer-padding-x: 0.125rem; }
 
 /************************************************************
 POPOVER
@@ -25007,10 +25072,10 @@ POPOVER
   --bs-popover-header-font-size: 0.875rem;
   --bs-popover-header-padding-x: 0.25rem;
   --bs-popover-header-padding-y: 0.25rem;
-  --bs-popover-header-padding: 0.25rem 0.25rem;
+  --bs-popover-header-padding: 0.25rem;
   --bs-popover-border-radius: 0.25rem;
   --bs-popover-inner-border-radius: calc(0.25rem - 1px); }
-  .popover.popover-sm .footer-content {
+  .popover.popover-sm .footer-content, .popover.popover-sm .jb-footer-content {
     --bs-footer-font-size: 0.75rem;
     --bs-footer-padding-y: 0.25rem;
     --bs-footer-padding-x: 0.25rem; }
@@ -25020,10 +25085,10 @@ POPOVER
   --bs-popover-header-font-size: 0.75rem;
   --bs-popover-header-padding-x: 0.125rem;
   --bs-popover-header-padding-y: 0.125rem;
-  --bs-popover-header-padding: 0.125rem 0.125rem;
+  --bs-popover-header-padding: 0.125rem;
   --bs-popover-border-radius: 0.125rem;
   --bs-popover-inner-border-radius: calc(0.125rem - 1px); }
-  .popover.popover-xs .footer-content {
+  .popover.popover-xs .footer-content, .popover.popover-xs .jb-footer-content {
     --bs-footer-font-size: 0.6875rem;
     --bs-footer-padding-y: 0.125rem;
     --bs-footer-padding-x: 0.125rem; }
@@ -25082,10 +25147,10 @@ bsSelectList
   --bs-dropdown-font-size: 1rem;
   --bs-dropdown-header-padding-x: 0.375rem;
   --bs-dropdown-header-padding-y: 0.375rem;
-  --bs-dropdown-header-padding: 0.375rem 0.375rem;
+  --bs-dropdown-header-padding: 0.375rem;
   --bs-dropdown-item-padding-x: 0.375rem;
   --bs-dropdown-item-padding-y: 0.375rem;
-  --bs-dropdown-item-padding: 0.375rem 0.375rem;
+  --bs-dropdown-item-padding: 0.375rem;
   --bs-dropdown-border-radius: 0.375rem;
   --bs-dropdown-inner-border-radius: calc(0.375rem - 1px); }
   .select-list:focus-within {
@@ -25096,20 +25161,20 @@ bsSelectList
     --bs-dropdown-font-size: 0.875rem;
     --bs-dropdown-header-padding-x: 0.25rem;
     --bs-dropdown-header-padding-y: 0.25rem;
-    --bs-dropdown-header-padding: 0.25rem 0.25rem;
+    --bs-dropdown-header-padding: 0.25rem;
     --bs-dropdown-item-padding-x: 0.25rem;
     --bs-dropdown-item-padding-y: 0.25rem;
-    --bs-dropdown-item-padding: 0.25rem 0.25rem;
+    --bs-dropdown-item-padding: 0.25rem;
     --bs-dropdown-border-radius: 0.25rem;
     --bs-dropdown-inner-border-radius: calc(0.25rem - 1px); }
   .modal-dialog-xs .select-list, .select-list.select-list-xs {
     --bs-dropdown-font-size: 0.75rem;
     --bs-dropdown-header-padding-x: 0.125rem;
     --bs-dropdown-header-padding-y: 0.125rem;
-    --bs-dropdown-header-padding: 0.125rem 0.125rem;
+    --bs-dropdown-header-padding: 0.125rem;
     --bs-dropdown-item-padding-x: 0.125rem;
     --bs-dropdown-item-padding-y: 0.125rem;
-    --bs-dropdown-item-padding: 0.125rem 0.125rem;
+    --bs-dropdown-item-padding: 0.125rem;
     --bs-dropdown-border-radius: 0.125rem;
     --bs-dropdown-inner-border-radius: calc(0.125rem - 1px); }
 
@@ -25144,12 +25209,12 @@ Font-size, padding and border-radius fro different size
     --bs-modal-content-font-size: 0.875rem;
     --bs-modal-padding-x: 0.25rem;
     --bs-modal-padding-y: 0.25rem;
-    --bs-modal-padding: 0.25rem 0.25rem; }
+    --bs-modal-padding: 0.25rem; }
     .modal-dialog.modal-dialog-sm .header-content {
       --bs-modal-header-padding-x: 0.25rem;
       --bs-modal-header-padding-y: 0.25rem;
-      --bs-modal-header-padding: 0.25rem 0.25rem; }
-    .modal-dialog.modal-dialog-sm .footer-content, .modal-dialog.modal-dialog-sm .header-content-smaller {
+      --bs-modal-header-padding: 0.25rem; }
+    .modal-dialog.modal-dialog-sm .footer-content, .modal-dialog.modal-dialog-sm .jb-footer-content, .modal-dialog.modal-dialog-sm .header-content-smaller {
       --bs-footer-font-size: 0.75rem;
       --bs-footer-padding-y: 0.25rem;
       --bs-footer-padding-x: 0.25rem; }
@@ -25159,12 +25224,12 @@ Font-size, padding and border-radius fro different size
     --bs-modal-content-font-size: 0.75rem;
     --bs-modal-padding-x: 0.125rem;
     --bs-modal-padding-y: 0.125rem;
-    --bs-modal-padding: 0.125rem 0.125rem; }
+    --bs-modal-padding: 0.125rem; }
     .modal-dialog.modal-dialog-xs .header-content {
       --bs-modal-header-padding-x: 0.125rem;
       --bs-modal-header-padding-y: 0.125rem;
-      --bs-modal-header-padding: 0.125rem 0.125rem; }
-    .modal-dialog.modal-dialog-xs .footer-content, .modal-dialog.modal-dialog-xs .header-content-smaller {
+      --bs-modal-header-padding: 0.125rem; }
+    .modal-dialog.modal-dialog-xs .footer-content, .modal-dialog.modal-dialog-xs .jb-footer-content, .modal-dialog.modal-dialog-xs .header-content-smaller {
       --bs-footer-font-size: 0.6875rem;
       --bs-footer-padding-y: 0.125rem;
       --bs-footer-padding-x: 0.125rem; }
@@ -25196,7 +25261,7 @@ Font-size, padding and border-radius fro different size
     box-shadow: none;
     max-height: inherit; }
   .modal-dialog:not(.modal-flex-width) .modal-content .modal-body > .jquery-scroll-container {
-    width: calc( 100% - 2*1px - 2*8px);
+    width: calc( 100% - 2*1px - 2*var(--jsc-scroll-padding));
     margin-left: auto;
     margin-right: auto; }
   .modal-dialog.modal-flex-width .modal-content .modal-body > .jquery-scroll-container {
@@ -25346,13 +25411,15 @@ Font-size, padding and border-radius fro different size
       flex-grow: 1; }
     .modal-dialog .modal-content .modal-body-fixed[class^='alert-'], .modal-dialog .modal-content .modal-body-fixed[class*=' alert-'], .modal-dialog .modal-content .modal-body[class^='alert-'], .modal-dialog .modal-content .modal-body[class*=' alert-'] {
       background-color: var(--bs-alert-bg); }
-    .modal-dialog .modal-content .footer-content:empty {
+    .modal-dialog .modal-content .footer-content:empty, .modal-dialog .modal-content .jb-footer-content:empty {
       display: none !important; }
     .modal-dialog .modal-content .modal-footer {
       flex-shrink: 0;
       flex-grow: 0; }
       .modal-dialog .modal-content .modal-footer:empty, .modal-dialog .modal-content .modal-footer.modal-footer-vertical:empty {
         display: none !important; }
+      .modal-dialog .modal-content .modal-footer > *:not(:first-child) {
+        margin-left: var(--bs-modal-padding); }
     .modal-dialog .modal-content .modal-footer.vertical-buttons,
     .modal-dialog .modal-content.modal-normal .modal-footer.vertical-buttons-for-normal,
     .modal-dialog .modal-content.modal-extended .modal-footer.vertical-buttons-for-extended {
@@ -25371,13 +25438,9 @@ Font-size, padding and border-radius fro different size
   .modal-dialog .modal-content.modal-minimized.modal-minimized-clickable .modal-body, .modal-dialog .modal-content.modal-minimized.modal-minimized-clickable .modal-body-fixed, .modal-dialog .modal-content.modal-normal.modal-normal-clickable .modal-body, .modal-dialog .modal-content.modal-normal.modal-normal-clickable .modal-body-fixed, .modal-dialog .modal-content.modal-extended.modal-extended-clickable .modal-body, .modal-dialog .modal-content.modal-extended.modal-extended-clickable .modal-body-fixed {
     cursor: pointer; }
 
-.modal-dialog .modal-body-fixed.scrollbar-vertical {
-  padding-left: 8px;
-  padding-right: 8px; }
-
-.modal-dialog .modal-body.scrollbar-vertical {
-  padding-left: 8px;
-  padding-right: 0; }
+html.no-touchevents .modal-dialog .modal-body-fixed.scrollbar-vertical {
+  padding-left: var(--jsc-scroll-padding);
+  padding-right: var(--jsc-scroll-auto-padding); }
 
 .modal-dialog .modal-body.scrollbar-horizontal {
   padding-top: 0;
@@ -25407,6 +25470,8 @@ MODAL-BACKDROP
   top: 0;
   background-color: #000;
   animation: fadeOutToNone .3s ease-out; }
+  .global-backdrop.transparent {
+    animation: none; }
   .global-backdrop.hidden {
     display: none; }
   .global-backdrop.show {
@@ -25415,6 +25480,9 @@ MODAL-BACKDROP
     align-items: center;
     opacity: 0.5;
     animation: fadeInFromNone .3s ease-out; }
+    .global-backdrop.show.transparent {
+      animation: none;
+      opacity: 0; }
   .global-backdrop i {
     display: none;
     font-size: 24px;
@@ -25666,7 +25734,7 @@ Adjustmernt to Bootstrap table
   --bs-table-cell-font-size: 1rem;
   --bs-table-cell-padding-x: 0.375rem;
   --bs-table-cell-padding-y: 0.375rem;
-  --bs-table-cell-padding: 0.375rem 0.375rem;
+  --bs-table-cell-padding: 0.375rem;
   word-break: normal;
   /*************************************
     Header
@@ -25696,12 +25764,12 @@ Adjustmernt to Bootstrap table
     --bs-table-cell-font-size: 0.875rem;
     --bs-table-cell-padding-x: 0.25rem;
     --bs-table-cell-padding-y: 0.25rem;
-    --bs-table-cell-padding: 0.25rem 0.25rem; }
+    --bs-table-cell-padding: 0.25rem; }
   .table.jb-table.table-xs, .modal-dialog-xs .table.jb-table {
     --bs-table-cell-font-size: 0.75rem;
     --bs-table-cell-padding-x: 0.125rem;
     --bs-table-cell-padding-y: 0.125rem;
-    --bs-table-cell-padding: 0.125rem 0.125rem; }
+    --bs-table-cell-padding: 0.125rem; }
   .table.jb-table > :not(caption) > * > * {
     font-size: var(--bs-table-cell-font-size);
     padding: var(--bs-table-cell-padding-y) var(--bs-table-cell-padding-x); }
@@ -25752,7 +25820,15 @@ Using Bootstrap Collapse to create accordion
 ************************************************************/
 .accordion {
   --bs-accordion-font-size: 1rem;
-  font-size: var(--bs-accordion-font-size); }
+  font-size: var(--bs-accordion-font-size);
+  --bs-accordion-footer-padding-x: 0.375rem;
+  --bs-accordion-footer-padding-y: 0.375rem;
+  --bs-accordion-footer-padding: 0.375rem; }
+  .accordion.no-transition .collapsing {
+    transition: height 0s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      .accordion.no-transition .collapsing {
+        transition: none; } }
   .accordion .accordion-button,
   .accordion .accordion-body {
     font-size: var(--bs-accordion-font-size); }
@@ -25766,6 +25842,10 @@ Using Bootstrap Collapse to create accordion
     .accordion .accordion-button.accordion-never-close::after {
       visibility: hidden; }
   .accordion .accordion-footer {
+    --bs-footer-font-size: 0.875rem;
+    --bs-footer-padding-y: 0.375rem;
+    --bs-footer-padding-x: 0.375rem; }
+  .accordion .accordion-footer {
     display: flex;
     align-items: center;
     border-top: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
@@ -25774,19 +25854,23 @@ Using Bootstrap Collapse to create accordion
     line-height: 1.25;
     font-size: var(--bs-footer-font-size);
     padding: var(--bs-accordion-footer-padding); }
+  .accordion .accordion-body.no-vertical-padding {
+    --bs-accordion-body-padding-y: 0 !important; }
+  .accordion .accordion-body.no-horizontal-padding {
+    --bs-accordion-body-padding-x: 0 !important; }
   .modal-dialog-sm .accordion, .accordion.accordion-sm {
     --bs-accordion-font-size: 0.875rem;
     --bs-accordion-btn-padding-x: 0.25rem;
     --bs-accordion-btn-padding-y: 0.25rem;
-    --bs-accordion-btn-padding: 0.25rem 0.25rem;
+    --bs-accordion-btn-padding: 0.25rem;
     --bs-accordion-body-padding-x: 0.25rem;
     --bs-accordion-body-padding-y: 0.25rem;
-    --bs-accordion-body-padding: 0.25rem 0.25rem;
+    --bs-accordion-body-padding: 0.25rem;
     --bs-accordion-border-radius: 0.25rem;
     --bs-accordion-inner-border-radius: calc(0.25rem - 1px);
     --bs-accordion-footer-padding-x: 0.25rem;
     --bs-accordion-footer-padding-y: 0.25rem;
-    --bs-accordion-footer-padding: 0.25rem 0.25rem; }
+    --bs-accordion-footer-padding: 0.25rem; }
     .modal-dialog-sm .accordion .accordion-footer, .accordion.accordion-sm .accordion-footer {
       --bs-footer-font-size: 0.75rem;
       --bs-footer-padding-y: 0.25rem;
@@ -25795,15 +25879,15 @@ Using Bootstrap Collapse to create accordion
     --bs-accordion-font-size: 0.75rem;
     --bs-accordion-btn-padding-x: 0.125rem;
     --bs-accordion-btn-padding-y: 0.125rem;
-    --bs-accordion-btn-padding: 0.125rem 0.125rem;
+    --bs-accordion-btn-padding: 0.125rem;
     --bs-accordion-body-padding-x: 0.125rem;
     --bs-accordion-body-padding-y: 0.125rem;
-    --bs-accordion-body-padding: 0.125rem 0.125rem;
+    --bs-accordion-body-padding: 0.125rem;
     --bs-accordion-border-radius: 0.125rem;
     --bs-accordion-inner-border-radius: calc(0.125rem - 1px);
     --bs-accordion-footer-padding-x: 0.125rem;
     --bs-accordion-footer-padding-y: 0.125rem;
-    --bs-accordion-footer-padding: 0.125rem 0.125rem; }
+    --bs-accordion-footer-padding: 0.125rem; }
     .modal-dialog-xs .accordion .accordion-footer, .accordion.accordion-xs .accordion-footer {
       --bs-footer-font-size: 0.6875rem;
       --bs-footer-padding-y: 0.125rem;
@@ -27485,6 +27569,9 @@ Accordion
 Card
 ***********************************************/
 /***********************************************
+Form
+***********************************************/
+/***********************************************
 Toast
 ***********************************************/
 /***********************************************
@@ -27574,6 +27661,13 @@ Varients of different properties
 /************************************************************
 HEADER and FOOTER-VARIANT
 Adjust padding and font-size for header and footer
+************************************************************/
+/************************************************************
+BUTTON-VARIANT
+button-text-color-variant
+button-border-color-variant
+button-background-color-variant
+Adjust text-, border-, and background-color for a button
 ************************************************************/
 /***********************************************
 Setting different _include_-variables to include
@@ -28718,9 +28812,22 @@ ADJUST MMENU AND JQUERY-BOOTSTRAP ELEMENTS
   margin-bottom: calc( var(--mm-listitem-size) / 2); }
 
 .mm-listitem__text {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   .mm-listitem__text > *:first-child {
     flex: 1; }
+
+.button-bar-container {
+  padding: 0;
+  margin: 0; }
+  .button-bar-container:last-child {
+    margin-bottom: 2px; }
+  .button-bar-container.padding-left {
+    padding-left: 1.5em; }
+  .button-bar-container.padding-right {
+    padding-right: 2.375rem; }
+    .mm-menu-sm .button-bar-container.padding-right {
+      padding-right: 1.9375rem; }
 
 /***********************************************
     fcoo-application.scss,
@@ -28994,6 +29101,12 @@ See _application-color-mixin.scss for description of application colors
   --bs-btn-hover-bg: #ccdcda;
   --bs-btn-active-bg: #cfdedc; }
 
+[class*="btn-fcoo-app-color"] .btn-jb.standard {
+  --bs-btn-disabled-color: var(--bs-btn-color);
+  --bs-btn-disabled-bg: var(--bs-btn-bg);
+  --bs-btn-disabled-border-color: var(--bs-btn-border-color);
+  --bs-btn-disabled-opacity: 0.4; }
+
 :root {
   --fcoo-app-bg-color: var(--_fcoo-app-bg-color-0, var(--_fcoo-default-app-bg-color-0));
   --fcoo-app-text-color: var(--_fcoo-app-text-color-0, var(--_fcoo-default-app-text-color-0));
@@ -29065,6 +29178,17 @@ $z-index-top-2: Background when loading
 WARIABLES
 Global scss-variables for fcoo-application
 *****************************************************/
+:root {
+  --fcoo-app-menu-padding: 0.375rem; }
+
+.mm-menu {
+  --mm-iconbar-button-dim: 2.375rem;
+  --mm-iconbar-size: calc( 2 * var(--fcoo-app-menu-padding) + var(--mm-iconbar-button-dim) ); }
+
+.touch-menu-container-sm, top-menu-container-sm, .mm-menu-sm {
+  --mm-iconbar-button-dim: 1.9375rem;
+  --fcoo-app-menu-padding: 0.25rem; }
+
 /*
 z-index for different layers:
     $z-index-top  : Absolute top
@@ -29309,7 +29433,7 @@ confussions another name is used
 
 .top-menu-container .top-menu {
   margin-top: 0px;
-  padding: 0.25rem;
+  padding: var(--fcoo-app-menu-padding);
   font-size: 0.875rem; }
   .top-menu-container .top-menu .top-menu-header {
     text-shadow: -1px 0 var(--fcoo-app-shadow-color), 0 1px var(--fcoo-app-shadow-color), 1px 0 var(--fcoo-app-shadow-color), 0 -1px var(--fcoo-app-shadow-color); }
@@ -29321,9 +29445,7 @@ confussions another name is used
     flex-shrink: 0;
     flex-grow: 0; }
   .top-menu-container .top-menu > .top-menu-item:not(:first-child) {
-    margin-left: 0.25rem !important; }
-    .touchevents .top-menu-container .top-menu > .top-menu-item:not(:first-child) {
-      margin-left: 0.375rem !important; }
+    margin-left: var(--fcoo-app-menu-padding) !important; }
   .top-menu-container .top-menu .left-side {
     margin-right: auto !important; }
   .top-menu-container .top-menu .right-side {
@@ -29612,8 +29734,6 @@ Two modes:
       transition: none !important; }
   .touch-menu-container .touch-menu {
     position: relative; }
-  .touch-menu-container .touch-pre-menu .button-group:not(:first-child) {
-    margin-left: .5em; }
   .touch-menu-container.vertical-auto-width {
     width: auto !important; }
   .touch-menu-container.vertical-auto-height {
@@ -29657,7 +29777,7 @@ Two modes:
 .vertical-pre-menu {
   border-bottom: 1px solid var(--fcoo-app-bg-color);
   background-color: var(--bs-gray-200);
-  padding: 0.25rem; }
+  padding: var(--fcoo-app-menu-padding); }
 
 .neighbour-container {
   transition-property: margin-left, margin-right, margin-top, margin-bottom !important;
@@ -31938,6 +32058,9 @@ Accordion
 Card
 ***********************************************/
 /***********************************************
+Form
+***********************************************/
+/***********************************************
 Toast
 ***********************************************/
 /***********************************************
@@ -31998,6 +32121,11 @@ Adjust modal
 jquery-scroll-container-variables.scss
 
 ************************************************/
+:root {
+  --jsc-scroll-size: 10px;
+  --jsc-scroll-padding: 10px;
+  --jsc-scroll-auto-padding: 10px; }
+
 /************************************************************
 VARIABLES
 
@@ -32027,6 +32155,13 @@ Varients of different properties
 /************************************************************
 HEADER and FOOTER-VARIANT
 Adjust padding and font-size for header and footer
+************************************************************/
+/************************************************************
+BUTTON-VARIANT
+button-text-color-variant
+button-border-color-variant
+button-background-color-variant
+Adjust text-, border-, and background-color for a button
 ************************************************************/
 /***********************************************
 leaflet-bootstrap-variables.scss
@@ -33749,6 +33884,9 @@ Accordion
 Card
 ***********************************************/
 /***********************************************
+Form
+***********************************************/
+/***********************************************
 Toast
 ***********************************************/
 /***********************************************
@@ -33809,6 +33947,11 @@ Adjust modal
 jquery-scroll-container-variables.scss
 
 ************************************************/
+:root {
+  --jsc-scroll-size: 10px;
+  --jsc-scroll-padding: 10px;
+  --jsc-scroll-auto-padding: 10px; }
+
 /************************************************************
 VARIABLES
 
@@ -33886,11 +34029,26 @@ DIVERSE
 .font-size-0-75em {
   font-size: 0.75em !important; }
 
+.font-size-1-1em {
+  font-size: 1.1em !important; }
+
 .font-size-1-2em {
   font-size: 1.2em !important; }
 
 .font-size-1-2rem {
   font-size: 1.2rem !important; }
+
+.transform-scale-0-5 {
+  transform: scale(0.5); }
+
+.transform-scale-0-65 {
+  transform: scale(0.65); }
+
+.transform-scale-1-2 {
+  transform: scale(1.2); }
+
+.transform-scale-1-5 {
+  transform: scale(1.5); }
 
 .no-margin {
   margin: 0 !important; }
@@ -34688,11 +34846,11 @@ when loading or not visible
       --bs-modal-content-font-size: 0.875rem;
       --bs-modal-padding-x: 0.25rem;
       --bs-modal-padding-y: 0.25rem;
-      --bs-modal-padding: 0.25rem 0.25rem; }
+      --bs-modal-padding: 0.25rem; }
       .bsp-color-info-outer .bsp-color-info-outer-container .bsp-color-info-header-sm .header-content {
         --bs-modal-header-padding-x: 0.25rem;
         --bs-modal-header-padding-y: 0.25rem;
-        --bs-modal-header-padding: 0.25rem 0.25rem; }
+        --bs-modal-header-padding: 0.25rem; }
       .bsp-color-info-outer .bsp-color-info-outer-container .bsp-color-info-header-sm .footer-content {
         --bs-footer-font-size: 0.75rem;
         --bs-footer-padding-y: 0.25rem;
@@ -34701,11 +34859,11 @@ when loading or not visible
       --bs-modal-content-font-size: 0.75rem;
       --bs-modal-padding-x: 0.125rem;
       --bs-modal-padding-y: 0.125rem;
-      --bs-modal-padding: 0.125rem 0.125rem; }
+      --bs-modal-padding: 0.125rem; }
       .bsp-color-info-outer .bsp-color-info-outer-container .bsp-color-info-header-xs .header-content {
         --bs-modal-header-padding-x: 0.125rem;
         --bs-modal-header-padding-y: 0.125rem;
-        --bs-modal-header-padding: 0.125rem 0.125rem; }
+        --bs-modal-header-padding: 0.125rem; }
       .bsp-color-info-outer .bsp-color-info-outer-container .bsp-color-info-header-xs .footer-content {
         --bs-footer-font-size: 0.6875rem;
         --bs-footer-padding-y: 0.125rem;

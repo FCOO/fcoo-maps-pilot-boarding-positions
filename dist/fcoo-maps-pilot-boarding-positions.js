@@ -285,7 +285,7 @@
                 content: [
                     {text: this.type, textClass: 'd-block text-center text-capitalize'},
                     '<hr>',
-                    {vfFormat:'latlng', vfValue: this.latLng,  textClass:'d-block text-center', onClick: $.proxy(this.showLatLngInModal, this)}
+                    {type:'button', vfFormat:'latlng', vfValue: this.latLng,  fullWidth: true, onClick: $.proxy(this.showLatLngInModal, this)}
                 ],
                 buttons: pilotageButtonList,
                 footer : footer
