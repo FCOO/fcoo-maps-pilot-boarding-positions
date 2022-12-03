@@ -77,7 +77,7 @@
     function pilotageList_resolve(data){
         pilotageList = pilotageList || data.list;
         pilotageListModal = pilotageListModal || $.bsModal({
-            header: {da: 'Lodserier i Danmark', en: 'Pilotages in Denmark'},
+            header: {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'},
             content: function($container){
                 $.each(pilotageList, function(index, options){
                     $container._bsAddHtml([{text: options.name, link: options.link}, '<br>']);
@@ -275,7 +275,7 @@
 
         addPopup: function(marker){
             marker.bindPopup({
-                width  : 180,
+                width  : 190,
                 fixable: true,
                 header : {
                     icon: pilotBoardingIcon,
@@ -283,9 +283,8 @@
                 },
                 color: 'center',
                 content: [
-                    {text: this.type, textClass: 'd-block text-center text-capitalize'},
-                    '<hr>',
-                    {type:'button', vfFormat:'latlng', vfValue: this.latLng,  fullWidth: true, onClick: $.proxy(this.showLatLngInModal, this)}
+                    {type: 'textbox', text: this.type, center: true, lineAfter:true},
+                    {type:'button',   text: ' ',       vfFormat:'latlng', vfValue: this.latLng,  fullWidth: true, onClick: $.proxy(this.showLatLngInModal, this)}
                 ],
                 buttons: pilotageButtonList,
                 footer : footer
