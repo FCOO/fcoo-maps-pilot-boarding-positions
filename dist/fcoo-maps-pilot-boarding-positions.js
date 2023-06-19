@@ -64,7 +64,6 @@
     List of pilotages and modal
     *****************************************************************************/
     var pilotageList,
-        pilotageListModal,
         pilotageListFileName;
 
     function pilotageListAsModal(){
@@ -76,7 +75,7 @@
 
     function pilotageList_resolve(data){
         pilotageList = pilotageList || data.list;
-        pilotageListModal = pilotageListModal || $.bsModal({
+        $.bsModal({
             header: {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'},
             content: function($container){
                 $.each(pilotageList, function(index, options){
@@ -84,9 +83,9 @@
                 });
             },
             footer: footer,
-            show  : false
+            show  : true,
+            remove: true
         });
-        pilotageListModal.show();
     }
 
     var pilotageButtonList = [{icon: 'fa-list', text: {da:'Lodserier', en:'Pilotages'}, onClick: pilotageListAsModal }];
