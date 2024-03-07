@@ -18,12 +18,16 @@
         window.fcoo = window.fcoo || {};
         window.fcoo.DEMO_VERSION = true;
         //OR window.fcoo.LOCAL_DATA = true;
+
     </script>
 
     <script src="bower_components.js"></script>
     <script src="../src/fcoo-maps-pilot-boarding-positions.js"></script>
 
     <script>
+        //TEMP: No access to data-files on AWS. Read from old location instead 
+        window.fcoo.path.setPath({host: 'bal.fcoo.dk'});
+
         window.fcoo.map.createApplication(
             //options
             {

@@ -64,7 +64,9 @@
     List of pilotages and modal
     *****************************************************************************/
     var pilotageList,
-        pilotageListFileName;
+        pilotGroupList,
+        pilotageListFileName,
+        pilotageModal;
 
     function pilotageListAsModal(){
         if (pilotageList)
@@ -74,18 +76,39 @@
     }
 
     function pilotageList_resolve(data){
-        pilotageList = pilotageList || data.list;
-        $.bsModal({
-            header: {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'},
-            content: function($container){
-                $.each(pilotageList, function(index, options){
-                    $container._bsAddHtml([{text: options.name, link: options.link}, '<br>']);
-                });
-            },
-            footer: footer,
-            show  : true,
-            remove: true
+        pilotageList   = pilotageList   || data.list;
+        pilotGroupList = pilotGroupList || data.groupList;
+
+        let accordionList = [];
+
+        pilotGroupList.forEach( (group) => {
+            const groupId = group.id;
+            let content = [];
+
+            pilotageList.forEach( (pilotage) => {
+                if (pilotage.group == groupId)
+                    content.push(  {text: pilotage.name, link: pilotage.link}, {text:'<br>'});
+            });
+            accordionList.push({
+                text    : group.name,
+                content : content
+            });
         });
+
+        pilotageModal = pilotageModal ||
+            $.bsModal({
+                header: {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'},
+                content: {
+                    type      : 'accordion',
+                    list      : accordionList,
+                    multiOpen : true,
+                    allOpen   : true
+                },
+                footer: footer,
+                show  : false
+            });
+
+        pilotageModal.show();
     }
 
     var pilotageButtonList = [{icon: 'fa-list', text: {da:'Lodserier', en:'Pilotages'}, onClick: pilotageListAsModal }];
@@ -282,7 +305,7 @@
                 },
                 color: 'center',
                 content: [
-                    {type: 'textbox', text: this.type, center: true, lineAfter:true},
+                    {type: 'textbox', text: this.type, center: true, lineAfter:true, textClass:'text-capitalize'},
                     {type:'button',   text: ' ',       vfFormat:'latlng', vfValue: this.latLng,  fullWidth: true, onClick: $.proxy(this.showLatLngInModal, this)}
                 ],
                 buttons: pilotageButtonList,
