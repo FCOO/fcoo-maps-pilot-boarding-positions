@@ -14,7 +14,7 @@
     "use strict";
 
     //Create namespaces
-    var ns = window.fcoo = window.fcoo || {},
+    let ns = window.fcoo = window.fcoo || {},
         nsMap = ns.map = ns.map || {},
 
 
@@ -24,11 +24,13 @@
         borderColorName = 'danger',
 
         pilotBoardingIcon = L.bsMarkerAsIcon(colorName, borderColorName);
-        pilotBoardingIcon.push('fas fa-rhombus fa-lbm-color-'+borderColorName+' fa-pilot-boarding-position-rhombus');
+        pilotBoardingIcon.push('fas fa-rhombus fa-lbm-color-'+borderColorName+' fa-pilot-boarding-position-rhombus')
         pilotBoardingIcon = [pilotBoardingIcon];
 
+    let pilotageHeader = {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'};
 
-    var bsMarkerOptions = {
+
+    let bsMarkerOptions = {
             size           : 'small',
             colorName      : colorName,
             borderColorName: borderColorName,
@@ -97,7 +99,7 @@
 
         pilotageModal = pilotageModal ||
             $.bsModal({
-                header: {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'},
+                header: pilotageHeader,
                 content: {
                     type      : 'accordion',
                     list      : accordionList,
@@ -120,8 +122,18 @@
         options = $.extend({
             subDir           : 'navigation',
             positionFileName : 'pilot-boarding-positions.json',
-            pilotagesFileName: 'pilotages.json'
+            pilotagesFileName: 'pilotages.json',
+
+            menuOptions: {
+                buttonList: [{
+                    icon: 'fa-list',
+                    text: pilotageHeader,
+                    onClick: pilotageListAsModal
+                }]
+            }
+
         }, options || {});
+
 
         //Set file-name for list of pilotages
         pilotageListFileName = window.fcoo.dataFilePath(options.subDir, options.pilotagesFileName);
@@ -158,8 +170,6 @@
     MapLayer_PilotBoardingPositions.prototype.createLayer = function(options){
         return new L.GeoJSON.PilotBoardingPositions(null, options);
     };
-
-
 
     /*****************************************************************************
     L.GeoJSON.PilotBoardingPositions = L.GeoJSON layer to display all points
