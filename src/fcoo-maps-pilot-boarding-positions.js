@@ -24,7 +24,7 @@
         borderColorName = 'danger',
 
         pilotBoardingIcon = L.bsMarkerAsIcon(colorName, borderColorName);
-        pilotBoardingIcon.push('fas fa-rhombus fa-lbm-color-'+borderColorName+' fa-pilot-boarding-position-rhombus')
+        pilotBoardingIcon.push('fas fa-rhombus fa-lbm-color-'+borderColorName+' fa-pilot-boarding-position-rhombus');
         pilotBoardingIcon = [pilotBoardingIcon];
 
     let pilotageHeader = {da: 'Lodserier i Danmark og Grønland', en: 'Pilotages in Denmark and Greenland'};
@@ -129,7 +129,9 @@
                     icon: 'fa-list',
                     text: pilotageHeader,
                     onClick: pilotageListAsModal
-                }]
+                }],
+                showAllways: true
+
             }
 
         }, options || {});
